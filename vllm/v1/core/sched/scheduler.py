@@ -697,13 +697,12 @@ class Scheduler(SchedulerInterface):
                 # out of bounds errors. TODO: Remove this once the KVConnector
                 # is updated to handle token IDs properly.
                 new_token_ids.append([])
+                resumed_token_ids = None
                 if resumed_from_preemption[idx]:
                     resumed_token_ids = req.all_token_ids[:req.
                                                           num_computed_tokens +
                                                           num_tokens]
-                    resumed_req_token_ids.append(resumed_token_ids)
-                else:
-                    resumed_req_token_ids.append(None)
+                resumed_req_token_ids.append(resumed_token_ids)
             new_block_ids.append(
                 req_to_new_blocks[req_id].get_block_ids(allow_none=True))
             num_computed_tokens.append(req.num_computed_tokens)
